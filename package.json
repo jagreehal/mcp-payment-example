@@ -1,0 +1,39 @@
+{
+  "name": "mcp-payment-example",
+  "version": "1.0.0",
+  "description": "Example MCP payment system demonstrating core concepts",
+  "type": "module",
+  "scripts": {
+    "start:basic": "bun run src/basic.ts",
+    "start:enhanced": "bun run src/enhanced.ts",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@types/node": "^22.13.10",
+    "eslint": "^9.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jagreehal/mcp-payment-example"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "payment-system"
+  ],
+  "author": "Jag Reehal",
+  "license": "MIT"
+}
