@@ -2,9 +2,14 @@
 
 ## Introduction
 
-The Model Context Protocol (MCP) framework enables seamless integration between AI models and your application's tools and data. This repository demonstrates a production-ready payment system implementation that can be used in two ways:
+The Model Context Protocol (MCP) framework enables seamless integration between AI models and your application's tools and data.
+
+![mcp-payment-example.gif](./mcp-payment-example.gif)
+
+This repository demonstrates a production-ready payment system implementation that can be used in two ways:
 
 1. **Interactive Development & Testing**: Use the MCP Inspector to interact with and test the payment system directly
+
 2. **AI Integration**: Connect the payment system to AI models for automated processing
 
 ## Repository Setup

@@ -14,7 +14,7 @@ const serverLogger = createServerLogger();
 const dbLogger = createDbLogger();
 const toolsLogger = createToolsLogger();
 
-// Initialise MCP server with enhanced metadata and explicit capabilities
+// Initialise MCP server with enhanced metadata and capabilities
 const server = new McpServer(
   {
     name: 'EnhancedPaymentSystem',
@@ -493,7 +493,10 @@ server.tool(
       );
 
       // Log payment update (instead of using server.emit which is not available)
-      console.log(`Payment update for user ${userId}`);
+      toolsLogger.info(
+        { type: 'payment_update', userId, payment },
+        'Payment update notification',
+      );
 
       return {
         content: [
@@ -592,7 +595,7 @@ server.prompt(
         },
       };
     } catch (error) {
-      console.error(`[ERROR] Report generation failed:`, error);
+      serverLogger.error({ err: error }, 'Report generation failed');
 
       return {
         messages: [
@@ -631,6 +634,14 @@ serverLogger.info(
 serverLogger.info(
   'Payment update events would be handled here in a full implementation',
 );
+
+try {
+  await setupServer();
+  serverLogger.info('Server is ready to handle requests');
+} catch (error) {
+  serverLogger.error({ err: error }, 'Fatal error during server setup');
+  throw new Error('Server initialization failed');
+}
 
 // Enhanced transport initialization with error handling
 async function setupServer() {
@@ -683,11 +694,4 @@ async function gracefulShutdown() {
     serverLogger.error({ err: error }, 'Error during shutdown');
     throw new Error('Error during shutdown');
   }
-}
-
-try {
-  await setupServer();
-} catch (error) {
-  serverLogger.error({ err: error }, 'Fatal error during server setup');
-  throw error;
 }
